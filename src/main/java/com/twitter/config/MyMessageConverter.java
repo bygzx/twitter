@@ -6,11 +6,13 @@ import java.util.List;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -23,8 +25,7 @@ import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
  * @date 2019/5/13 13:35
  **/
 @Slf4j
-@Configuration
-@EnableWebMvc
+@SpringBootConfiguration
 public class MyMessageConverter implements WebMvcConfigurer {
 
 
@@ -36,9 +37,9 @@ public class MyMessageConverter implements WebMvcConfigurer {
      * 3.在convert中添加配置信息
      * 4.将convert添加到converters当中
      */
-    /*@Override
+    @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        log.info("****************configureMessageConverters****************{}",converters.toString());
+        log.info("****************configureMessageConverters1****************{}",converters.toString());
 
         //1.先定义一个convert转换消息的对象
         FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
@@ -68,8 +69,8 @@ public class MyMessageConverter implements WebMvcConfigurer {
         fj1.setSerializerFeatures(SerializerFeature.DisableCircularReferenceDetect);
         fjc.setFastJsonConfig(fj);
 
-        for (HttpMessageConverter<?> messageConverter : converters) {
-            log.info("****************extendMessageConverters****************{}",messageConverter); //2
-        }
-    }*/
+        /*for (HttpMessageConverter<?> messageConverter : converters) {
+            log.info("****************extendMessageConverters2****************{}",messageConverter); //2
+        }*/
+    }
 }

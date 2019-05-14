@@ -1,22 +1,25 @@
 package com.twitter.demo;
 
-import com.twitter.config.EntryConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.servlet.ServletComponentScan;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableAsync;
 
-@ServletComponentScan
+
 @SpringBootApplication
-public class DemoApplication extends SpringBootServletInitializer {
+@EnableAsync
+@ComponentScan(basePackages={"com.twitter.controller","com.twitter.config"})
+public class DemoApplication  {
 
-	@Override
+	/*@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(EntryConfig.class);
+		return application.sources(EntryConfig.class,TaskExecutePool.class);
 	}
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(EntryConfig.class, args);
+	}*/
+	public static void main(String[] args) {
+		SpringApplication.run(DemoApplication.class, args);
 	}
 }

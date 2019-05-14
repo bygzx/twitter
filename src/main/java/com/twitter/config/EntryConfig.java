@@ -1,24 +1,15 @@
 package com.twitter.config;
 
 
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.alibaba.fastjson.support.config.FastJsonConfig;
-import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.*;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.List;
 
 @ImportResource({"classpath:/applicationContext.xml"})
 @ComponentScan(basePackages={"com.twitter.controller"})
@@ -26,7 +17,8 @@ import java.util.List;
 @EnableAutoConfiguration
 public class EntryConfig {
 	final static Logger log = LoggerFactory.getLogger(EntryConfig.class);
-
+	@Autowired
+	private TaskThreadPool config;
 
 	@Value("${executor.thread.num:3}")
 	private int executorThreadNum;
@@ -35,16 +27,16 @@ public class EntryConfig {
 	private void init() {
 		log.info("[init]   executorThreadNum:{}",  executorThreadNum);
 	}
-
-	@Bean
+	/**
+	 * 1.先定义一个convert转换消息的对象
+	 * 2.添加fastjson的配置信息，比如：是否要格式化返回的json数据
+	 * 3.在convert中添加配置信息
+	 * 4.将convert添加到converters当中
+	 */
+	/*@Bean
 	public HttpMessageConverters fastJsonHttpMessageConverters() {
 		log.info("****************configureMessageConverters1****************{}");
-		/**
-		 * 1.先定义一个convert转换消息的对象
-		 * 2.添加fastjson的配置信息，比如：是否要格式化返回的json数据
-		 * 3.在convert中添加配置信息
-		 * 4.将convert添加到converters当中
-		 */
+
 		//1.先定义一个convert转换消息的对象
 		FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
 		//2.添加fastjson的配置信息，比如：是否要格式化返回的json数据
@@ -80,5 +72,5 @@ public class EntryConfig {
 		mappingJackson2HttpMessageConverter.setSupportedMediaTypes(list);
 		return mappingJackson2HttpMessageConverter;
 	}
-
+*/
 }
