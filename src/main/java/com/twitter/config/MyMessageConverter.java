@@ -37,7 +37,7 @@ public class MyMessageConverter implements WebMvcConfigurer {
      * 3.在convert中添加配置信息
      * 4.将convert添加到converters当中
      */
-    @Override
+    /*@Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         log.info("****************configureMessageConverters1****************{}",converters.toString());
 
@@ -56,6 +56,9 @@ public class MyMessageConverter implements WebMvcConfigurer {
         fastConverter.setFastJsonConfig(fastJsonConfig);
         //4.将convert添加到converters当中
         converters.add(fastConverter);
+        //处理字符串, 避免直接返回字符串的时候被添加了引号
+        StringHttpMessageConverter smc = new StringHttpMessageConverter(Charset.forName("UTF-8"));
+        converters.add(smc);
     }
 
     @Override
@@ -69,8 +72,5 @@ public class MyMessageConverter implements WebMvcConfigurer {
         fj1.setSerializerFeatures(SerializerFeature.DisableCircularReferenceDetect);
         fjc.setFastJsonConfig(fj);
 
-        /*for (HttpMessageConverter<?> messageConverter : converters) {
-            log.info("****************extendMessageConverters2****************{}",messageConverter); //2
-        }*/
-    }
+    }*/
 }

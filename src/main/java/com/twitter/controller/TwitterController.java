@@ -48,11 +48,12 @@ public class TwitterController extends AbstractController {
         return buildSuccess(jsonObject);
     }
 
-    @PostMapping("syncData")
+    @PostMapping("/syncData")
     public Object sync(){
         threadPoolExecutor.submit(() ->
         {
             log.info("threadPoolExecutor");
+            log.info(Thread.currentThread().getName());
 
         });
         return buildSuccess();
