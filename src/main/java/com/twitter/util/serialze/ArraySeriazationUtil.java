@@ -19,6 +19,7 @@ public class ArraySeriazationUtil {
 //		return false;
 //	}
 
+
 	public static byte[] serializeArray(Object obj) {
 		Object[] objArr = (Object[]) obj;
 		byte[] buffer = null;
