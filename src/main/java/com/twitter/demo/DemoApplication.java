@@ -8,7 +8,10 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
 @EnableAsync
-@ComponentScan(basePackages={"com.twitter.controller","com.twitter.config"})
+@ComponentScan(basePackages={"com.twitter.controller"
+		,"com.twitter.config"
+		,"com.twitter.service"
+		,"com.twitter.redis"})
 public class DemoApplication  {
 
 	/*@Override

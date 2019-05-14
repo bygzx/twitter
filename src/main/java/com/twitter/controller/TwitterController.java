@@ -2,8 +2,10 @@ package com.twitter.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.twitter.config.AsyncTask;
+import com.twitter.service.HttpService.ReqService;
 import com.twitter.util.controller.AbstractController;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.bcel.classfile.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Async;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.concurrent.Executor;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -28,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 public class TwitterController extends AbstractController {
 
     @Autowired
-    private AsyncTask asyncTask;
+    private ReqService reqService;
 
     private static ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(5,10, 30, TimeUnit.SECONDS,
             new LinkedBlockingQueue<>(50));
@@ -44,7 +47,6 @@ public class TwitterController extends AbstractController {
         jsonObject.put("bs2","");
         jsonObject.put("success1",false);
         jsonObject.put("success2",true);
-        ss();
         return buildSuccess(jsonObject);
     }
 
@@ -58,9 +60,10 @@ public class TwitterController extends AbstractController {
         });
         return buildSuccess();
     }
-    //@Async
-    public void ss(){
-        asyncTask.doTask1(1);
+    @PostMapping("/login")
+    public Object login() throws IOException {
+        reqService.login(1);
+        return buildSuccess();
     }
 
 }
