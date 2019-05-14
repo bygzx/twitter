@@ -21,7 +21,7 @@ import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 
 /**
- * @author binfeng huang
+ * @author bygzx
  * @date 2019/5/13 13:35
  **/
 @Slf4j

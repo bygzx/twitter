@@ -17,7 +17,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
- * @author binfeng huang
+ * @author bygzx
  * @date 2019/5/13 16:30
  **/
 @Slf4j

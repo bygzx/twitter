@@ -3,7 +3,7 @@ package com.twitter.util.controller;
 import com.alibaba.fastjson.annotation.JSONField;
 
 /**
- * @author binfeng huang
+ * @author bygzx
  * @date 2019/5/13 10:29
  **/
 public class CommonResult<T> {

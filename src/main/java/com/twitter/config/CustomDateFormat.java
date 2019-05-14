@@ -8,7 +8,7 @@ import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 /**
- * @author binfeng huang
+ * @author bygzx
  * @date 2019/5/13 14:33
  **/
 public class CustomDateFormat extends StdDateFormat {

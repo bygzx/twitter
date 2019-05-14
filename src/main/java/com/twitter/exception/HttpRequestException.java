@@ -1,7 +1,7 @@
 package com.twitter.exception;
 
 /**
- * @author binfeng huang
+ * @author bygzx
  * @date 2019/5/13 10:26
  **/
 public class HttpRequestException extends Exception {

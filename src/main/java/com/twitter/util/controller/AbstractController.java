@@ -1,7 +1,7 @@
 package com.twitter.util.controller;
 
 /**
- * @author binfeng huang
+ * @author bygzx
  * @date 2019/5/13 10:29
  **/
 public class AbstractController {
