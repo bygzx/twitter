@@ -2,6 +2,7 @@ package com.twitter.service.HttpService;
 
 import com.alibaba.fastjson.JSONObject;
 
+import javax.script.ScriptException;
 import java.io.IOException;
 
 /**
@@ -14,5 +15,5 @@ public interface ReqService {
      * @param isProxy 0-不用代理 1-用
      * @return
      */
-    JSONObject login(int isProxy) throws IOException;
+    JSONObject login(int isProxy) throws Exception;
 }

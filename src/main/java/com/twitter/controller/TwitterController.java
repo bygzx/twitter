@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.script.ScriptException;
 import java.io.IOException;
 import java.util.Date;
 import java.util.concurrent.Executor;
@@ -61,7 +62,7 @@ public class TwitterController extends AbstractController {
         return buildSuccess();
     }
     @PostMapping("/login")
-    public Object login() throws IOException {
+    public Object login() throws Exception {
         reqService.login(1);
         return buildSuccess();
     }
