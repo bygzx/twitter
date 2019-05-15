@@ -41,7 +41,7 @@ public class ReqServiceImpl implements ReqService {
     public JSONObject login(int isProxy) throws Exception {
         JSONObject jsonObject = new JSONObject();
         //getLoginJson(isProxy);
-        crawlPageWithoutAnalyseJs();
+        crawlPageWithoutAnalyseJs(isProxy);
         return null;
     }
 
@@ -191,10 +191,10 @@ public class ReqServiceImpl implements ReqService {
 
     /**
      * 功能描述：抓取页面时不解析页面的js
-     * @param url
+     * @param isProxy
      * @throws Exception
      */
-    public void crawlPageWithoutAnalyseJs() throws Exception{
+    public void crawlPageWithoutAnalyseJs(int isProxy) throws Exception{
         URL link=new URL(loginUrl);
         WebRequest request=new WebRequest(link);
         //request.setCharset("UTF-8");
@@ -226,7 +226,7 @@ public class ReqServiceImpl implements ReqService {
         //3.抓取页面
         HtmlPage page = webClient.getPage(request);
         webClient.waitForBackgroundJavaScript(10000);
-        System.out.println(page.asXml());
+
         //4.关闭模拟窗口
         webClient.close();
         Document document = Jsoup.parse(page.asXml());
@@ -235,6 +235,9 @@ public class ReqServiceImpl implements ReqService {
         HtmlElement element = page.getHead();
         CookieManager CM = webClient.getCookieManager(); //WC = Your WebClient's name
         Set<Cookie> cookies_ret = CM.getCookies();//返回的Cookie在这里，下次请求的时候可能可以用上啦。
+
+        String authenticity_token = page.getElementsByName("authenticity_token").get(0).getAttribute("value");
+        String ui_metrics = page.getElementsByName("ui_metrics").get(0).getAttribute("value");
         log.info("header----->{}","sadasdas");
         /*if(contents!=null) {
             Element page_canvas = contents.select("div.page-canvas").first().select("div.signin-wrapper").first().getElementsByTag("form").first();
